@@ -89,7 +89,9 @@ function writeZero () {
 document.getElementById('dot').addEventListener('click', writeDot)
 
 function writeDot () {
-    document.getElementById('lower').innerHTML += '.'
+    if (!(document.getElementById('lower').innerHTML.includes('.'))) {
+        document.getElementById('lower').innerHTML += '.'
+    }
 }
 
 //? ac
@@ -98,6 +100,7 @@ document.getElementById('ac').addEventListener('click', writeAC)
 
 function writeAC () {
     document.getElementById('lower').innerHTML = ''
+    document.getElementById('upper').innerHTML = ''
 }
 
 //? del
@@ -114,10 +117,12 @@ function writeDel () {
 document.getElementById('divide').addEventListener('click', writeDivide)
 
 function writeDivide () {
+    if (document.getElementById('lower').innerHTML != '') {
     document.getElementById('lower').innerHTML += ' / ';
     let lower = document.getElementById('lower').innerHTML;
     document.getElementById('lower').innerHTML = ''
     document.getElementById('upper').innerHTML = lower
+    }
 }
 
 //? multiply
@@ -125,10 +130,13 @@ function writeDivide () {
 document.getElementById('multiply').addEventListener('click', writeMultiply)
 
 function writeMultiply () {
+
+    if (document.getElementById('lower').innerHTML != '') {
     document.getElementById('lower').innerHTML += ' * ';
     let lower = document.getElementById('lower').innerHTML;
     document.getElementById('lower').innerHTML = ''
     document.getElementById('upper').innerHTML = lower
+    }
 }
 
 
@@ -137,10 +145,12 @@ function writeMultiply () {
 document.getElementById('plus').addEventListener('click', writePlus)
 
 function writePlus () {
+    if (document.getElementById('lower').innerHTML != '') {
     document.getElementById('lower').innerHTML += ' + ';
     let lower = document.getElementById('lower').innerHTML;
     document.getElementById('lower').innerHTML = ''
     document.getElementById('upper').innerHTML = lower
+    }
 }
 
 //? minus
@@ -148,10 +158,12 @@ function writePlus () {
 document.getElementById('minus').addEventListener('click', writeMinus)
 
 function writeMinus () {
+    if (document.getElementById('lower').innerHTML != '') {
     document.getElementById('lower').innerHTML += ' - ';
     let lower = document.getElementById('lower').innerHTML;
     document.getElementById('lower').innerHTML = ''
     document.getElementById('upper').innerHTML = lower
+    }
 }
 
 
@@ -161,6 +173,8 @@ document.getElementById('equal').addEventListener('click', writeEqual)
 
 function writeEqual () {
     let result = document.getElementById('upper').innerHTML + document.getElementById('lower').innerHTML;
-    document.getElementById('lower').innerHTML = eval(result);
-    document.getElementById('upper').innerHTML = '';
+    if (result != '') {
+        document.getElementById('lower').innerHTML = eval(result);
+        document.getElementById('upper').innerHTML = '';
+    }
 }
